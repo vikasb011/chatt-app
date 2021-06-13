@@ -1,0 +1,73 @@
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Fixed navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+
+<div id="center-text">
+  <h2>ChatBox UI</h2>
+ 
+</div> 
+<div id="body"> 
+
+<div id="chat-circle" (click)="chatboxState=true;buttonState=false" [ngStyle]="{'display':buttonState==true ? 'block':'none'}" class="btn btn-raised">
+      <div id="chat-overlay"></div>
+      <i class="material-icons">speaker_phone</i>
+</div>
+
+<div class="chat-box" [ngStyle]="{'display':chatboxState==true ? 'block':'none'}">
+  <div class="chat-box-header">
+    ChatBot
+    <span class="chat-box-toggle" (click)="chatboxState=false;buttonState=true"><i class="material-icons">close</i></span>
+  </div>
+  <div class="chat-box-body">
+    <div class="chat-box-overlay">   
+    </div>
+    <div class="chat-logs" >
+      <div id='cm-msg-{{i}}' class="chat-msg self" *ngFor="let msg of data;let i=index">
+        <span class="msg-avatar">
+           <!-- <img src="https://image.crisp.im/avatar/operator/196af8cc-f6ad-4ef7-afd1-c45d5231387c/240/?1483361727745"> -->
+         </span>
+          <div class="cm-msg-text">
+            {{msg.message}}
+          </div>
+        </div>
+     
+    </div><!--chat-log -->
+  </div>
+  <div class="chat-input">      
+    <form>
+      <input type="text" autocomplete="off" id="chat-input" #message [(ngModel)]="chatmessage" name="msg" placeholder="Send a message..."/>
+    <button type="submit" (click)="sendMessage($event,message.value)" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+    </form>      
+  </div>
+</div>
+
+
+
+
+</div>
+
+<router-outlet></router-outlet>
